@@ -604,18 +604,24 @@ require('lazy').setup({
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
+
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            if server_name == 'tsserver' then
+              server.capabilities.documentFormattingProvider = false
+            end
             require('lspconfig')[server_name].setup(server)
           end,
         },
       }
 
       require('lspconfig').gleam.setup {}
+      require('lspconfig').biome.setup {}
     end,
   },
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    enabled = false,
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -630,6 +636,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        javascript = { { 'biome', 'prettierd', 'prettier' } },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
