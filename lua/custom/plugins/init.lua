@@ -204,6 +204,7 @@ return {
       vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
 
       vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'N[E]o tree' })
+
       require('neo-tree').setup {
         close_if_last_window = true,
         default_component_configs = {
@@ -215,6 +216,9 @@ return {
         window = {
           position = 'right',
         },
+        filesystem = {
+            hijack_netrw_behavior = "disabled"
+        }
       }
     end,
   },
