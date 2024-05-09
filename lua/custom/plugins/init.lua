@@ -5,6 +5,9 @@
 return {
   'gleam-lang/gleam.vim',
   {
+    'scrooloose/nerdcommenter',
+  },
+  {
     'windwp/nvim-autopairs',
     -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },
@@ -217,8 +220,8 @@ return {
           position = 'right',
         },
         filesystem = {
-            hijack_netrw_behavior = "disabled"
-        }
+          hijack_netrw_behavior = 'disabled',
+        },
       }
     end,
   },
