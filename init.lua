@@ -766,11 +766,12 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'loctvl842/monokai-pro.nvim',
+    'catppuccin/nvim',
+    name="catppuccin",
     priority = 1000, -- Make sure to load this before all the other start plugins.
     lazy = false,
     init = function()
-      vim.cmd.colorscheme 'monokai-pro'
+      vim.cmd.colorscheme 'catppuccin'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
