@@ -566,6 +566,11 @@ require('lazy').setup({
             'gleam',
           },
         },
+        volar = {
+          filetypes = {
+            'vue',
+          },
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -767,7 +772,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'catppuccin/nvim',
-    name="catppuccin",
+    name = 'catppuccin',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     lazy = false,
     init = function()
