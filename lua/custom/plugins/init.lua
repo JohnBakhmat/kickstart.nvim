@@ -236,6 +236,7 @@ return {
   { 'folke/neodev.nvim', opts = {} },
   {
     'sbdchd/neoformat',
+    enabled = false,
     config = function()
       vim.keymap.set('n', '<leader>nf', function()
         vim.cmd 'Neoformat'
