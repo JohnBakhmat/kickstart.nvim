@@ -4,9 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
   'gleam-lang/gleam.vim',
-  {
-    'scrooloose/nerdcommenter',
-  },
+  'scrooloose/nerdcommenter',
   {
     'windwp/nvim-autopairs',
     -- Optional dependency
@@ -26,7 +24,6 @@ return {
       require('alpha').setup(require('alpha.themes.startify').config)
     end,
   },
-  'andweeb/presence.nvim',
   {
     'tpope/vim-fugitive',
     config = function()
@@ -59,66 +56,6 @@ return {
           vim.keymap.set('n', '<leader>t', ':Git push -u origin ', opts)
         end,
       })
-    end,
-  },
-  {
-    'ThePrimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local harpoon = require 'harpoon'
-
-      -- REQUIRED
-      harpoon:setup {}
-      -- REQUIRED
-
-      -- basic telescope configuration
-      local conf = require('telescope.config').values
-      local function toggle_telescope(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        require('telescope.pickers')
-          .new({}, {
-            prompt_title = 'Harpoon',
-            finder = require('telescope.finders').new_table {
-              results = file_paths,
-            },
-            previewer = conf.file_previewer {},
-            sorter = conf.generic_sorter {},
-          })
-          :find()
-      end
-
-      vim.keymap.set('n', '<leader>a', function()
-        harpoon:list():append()
-      end)
-      vim.keymap.set('n', '<C-h>', function()
-        toggle_telescope(harpoon:list())
-      end)
-
-      vim.keymap.set('n', '<C-1>', function()
-        harpoon:list():select(1)
-      end)
-      vim.keymap.set('n', '<C-2>', function()
-        harpoon:list():select(2)
-      end)
-      vim.keymap.set('n', '<C-3>', function()
-        harpoon:list():select(3)
-      end)
-      vim.keymap.set('n', '<C-4>', function()
-        harpoon:list():select(4)
-      end)
-
-      -- Toggle previous & next buffers stored within Harpoon list
-      vim.keymap.set('n', '<C-S-P>', function()
-        harpoon:list():prev()
-      end)
-      vim.keymap.set('n', '<C-S-N>', function()
-        harpoon:list():next()
-      end)
     end,
   },
   {
@@ -172,59 +109,6 @@ return {
       }
     end,
   },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      '3rd/image.nvim', -- Optional image support in preview window: See `# Preview Mode` for more information
-      {
-        's1n7ax/nvim-window-picker',
-        version = '2.*',
-        config = function()
-          require('window-picker').setup {
-            filter_rules = {
-              include_current_win = false,
-              autoselect_one = true,
-              -- filter using buffer options
-              bo = {
-                -- if the file type is one of following, the window will be ignored
-                filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-                -- if the buffer type is one of following, the window will be ignored
-                buftype = { 'terminal', 'quickfix' },
-              },
-            },
-          }
-        end,
-      },
-    },
-    config = function()
-      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-      vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
-
-      vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'N[E]o tree' })
-
-      require('neo-tree').setup {
-        close_if_last_window = true,
-        default_component_configs = {
-          indent = {
-            indent_size = 2,
-            with_expanders = true,
-          },
-        },
-        window = {
-          position = 'right',
-        },
-        filesystem = {
-          hijack_netrw_behavior = 'disabled',
-        },
-      }
-    end,
-  },
   'nvim-tree/nvim-web-devicons',
   {
     'echasnovski/mini.indentscope',
@@ -233,23 +117,11 @@ return {
       require('mini.indentscope').setup()
     end,
   },
-  { 'folke/neodev.nvim', opts = {} },
-  {
-    'sbdchd/neoformat',
-    enabled = false,
-    config = function()
-      vim.keymap.set('n', '<leader>nf', function()
-        vim.cmd 'Neoformat'
-      end)
-    end,
-  },
   {
     'karb94/neoscroll.nvim',
-    config = function()
-      require('neoscroll').setup {
-        easing_function = 'circular',
-      }
-    end,
+    opts = {
+      easing_function = 'circular',
+    },
   },
   {
     'folke/noice.nvim',
@@ -299,18 +171,16 @@ return {
   {
     'simrat39/symbols-outline.nvim',
     cmd = 'SymbolsOutline',
-    keys = { { '<leader>cs', '<cmd>SymbolsOutline<cr>', desc = 'Symbols Outline' } },
+    keys = { { '<leader>so', '<cmd>SymbolsOutline<cr>', desc = 'Symbols Outline' } },
     opts = {
       position = 'right',
     },
   },
   {
     'folke/trouble.nvim',
-    config = function()
-      require('trouble').setup {
-        icons = true,
-      }
-    end,
+    opts = {
+      icons = true,
+    },
   },
   {
     'mbbill/undotree',
