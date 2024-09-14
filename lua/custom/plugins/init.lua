@@ -6,6 +6,25 @@ return {
   'gleam-lang/gleam.vim',
   'scrooloose/nerdcommenter',
   {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+      default_file_explorer = true,
+      columns = {
+        'icon',
+      },
+      view_options = {
+        is_hidden_file = function(name, bufnr)
+          return name ~= '..' and vim.startswith(name, '.')
+        end,
+      },
+    },
+    -- Optional dependencies
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  },
+  {
     'windwp/nvim-autopairs',
     -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },

@@ -323,7 +323,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
-        'nvim-telescope/telescope-file-browser.nvim',
+        --'nvim-telescope/telescope-file-browser.nvim',
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
         build = 'make',
@@ -335,7 +335,6 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-      'nvim-telescope/telescope-media-files.nvim',
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
@@ -375,26 +374,18 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
-          ['file_browser'] = {
-            theme = 'dropdown',
-            hijack_netrw = true,
-            grouped = true,
-          },
-          ['media_files'] = {
-            -- filetypes whitelist
-            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-            filetypes = { 'png', 'webp', 'jpg', 'jpeg' },
-            -- find command (defaults to `fd`)
-            find_cmd = 'rg',
-          },
+          --['file_browser'] = {
+          --theme = 'ivy',
+          --hijack_netrw = true,
+          --grouped = true,
+          --},
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'file_browser')
-      pcall(require('telescope').load_extension, 'media_files')
+      --pcall(require('telescope').load_extension, 'file_browser')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -432,7 +423,8 @@ require('lazy').setup({
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
 
-      vim.keymap.set('n', '<space>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [B]rowser' })
+      --vim.keymap.set('n', '<space>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [B]rowser' })
+      vim.keymap.set('n', '<space>fb', '<CMD>Oil<CR>', { desc = '[F]ile [B]rowser' })
     end,
   },
 
