@@ -807,6 +807,16 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    lazy = false,
+    --init = function()
+    --vim.cmd.colorscheme 'rose-pine'
+    --vim.cmd.hi 'Comment gui=none'
+    --end,
+  },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -896,7 +906,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
 
