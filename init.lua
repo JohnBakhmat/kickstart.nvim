@@ -635,13 +635,13 @@ require('lazy').setup({
             if server_name == 'tsserver' then
               server.capabilities.documentFormattingProvider = false
             end
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name).setup(server)
           end,
         },
       }
 
-      require('lspconfig').gleam.setup {}
-      require('lspconfig').biome.setup {}
+      -- require('lspconfig').gleam.setup {}
+      -- require('lspconfig').biome.setup {}
     end,
   },
 
