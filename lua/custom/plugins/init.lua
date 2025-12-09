@@ -107,13 +107,13 @@ return {
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = function()
-      require('nvim-autopairs').setup {}
-    end,
-  },
+  --{
+  --'windwp/nvim-autopairs',
+  --event = 'InsertEnter',
+  --config = function()
+  --require('nvim-autopairs').setup {}
+  --end,
+  --},
   {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -207,12 +207,19 @@ return {
     end,
   },
   'nvim-tree/nvim-web-devicons',
+  --{
+  --'echasnovski/mini.indentscope',
+  --version = '*',
+  --config = function()
+  --require('mini.indentscope').setup()
+  --end,
+  --},
+  --
   {
-    'echasnovski/mini.indentscope',
-    version = '*',
-    config = function()
-      require('mini.indentscope').setup()
-    end,
+    'saghen/blink.indent',
+    --- @module 'blink.indent'
+    --- @type blink.indent.Config
+    -- opts = {},
   },
   {
     'karb94/neoscroll.nvim',
