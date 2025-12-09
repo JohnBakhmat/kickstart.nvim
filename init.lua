@@ -760,7 +760,7 @@ require('lazy').setup({
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
+          ['<C-a>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
@@ -793,6 +793,15 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'helbing/aura.nvim',
+    priority = 1000,
+    lazy = false,
+    init = function()
+      vim.cmd.colorscheme 'aura'
+    end,
+  },
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -803,7 +812,7 @@ require('lazy').setup({
     priority = 1000, -- Make sure to load this before all the other start plugins.
     lazy = false,
     init = function()
-      vim.cmd.colorscheme 'catppuccin'
+      --vim.cmd.colorscheme 'catppuccin'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
